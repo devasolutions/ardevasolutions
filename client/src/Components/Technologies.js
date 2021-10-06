@@ -26,14 +26,19 @@ const Technologies = () => {
             <CDBTableHeader>
                 <tr>
                     <th>#</th>
-                    <th>Columna Technologies 1</th>
-                    <th>Columna Technologies 2</th>
-                    <th>Columna Technologies 3</th>
+                    <th>Nombre</th>
+                    <th>Desarrollador</th>
+                    <th>Versión</th>
+                    <th>Enlace</th>
+                    <th>Descripción</th>
+
                 </tr>
             </CDBTableHeader>
             <CDBTableBody>
                 <tr>
                     <td>1</td>
+                    <td>Placeholder text</td>
+                    <td>Placeholder text</td>
                     <td>Placeholder text</td>
                     <td>Placeholder text</td>
                     <td>Placeholder text</td>

@@ -26,15 +26,13 @@ const Solutions = () => {
             <CDBTableHeader>
                 <tr>
                     <th>#</th>
-                    <th>Columna Solutions 1</th>
-                    <th>Columna Solutions 2</th>
-                    <th>Columna Solutions 3</th>
+                    <th>Nombre</th>
+                    <th>Tecnologías</th>
                 </tr>
             </CDBTableHeader>
             <CDBTableBody>
                 <tr>
                     <td>1</td>
-                    <td>Placeholder text</td>
                     <td>Placeholder text</td>
                     <td>Placeholder text</td>
                 </tr>

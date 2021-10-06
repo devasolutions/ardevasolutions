@@ -4,4 +4,4 @@
 #Si tienes Linux/MacOS prueba en correr el .sh si se necesita haz un 'chmod u+x install-dependencies.sh' para que lo puedas correr './install-dependencies.sh'
 
 python -m pip install Django #Se instala Django para correr el servidor
-pip install mongoengine #Se instala MongoEngine para jalar datos de la BD utilizando un Modelo de Objeto Relacional (similar a Mongoose JS para Node)pyt
+pip install mongoengine #Se instala MongoEngine para jalar datos de la BD utilizando un Modelo de Objeto Relacional (similar a Mongoose JS para Node)pytgit

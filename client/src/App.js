@@ -1,15 +1,24 @@
-import Sidebar from './Components/Sidebar';
 import Grid from './Components/Grid';
+import Home from './Components/Home'
+import Login from './Components/Login'
 import './App.css';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
   return (
+    <div className="App">
     <Router>
-      <div className="App">
-      <Grid/>
-      </div>
+      <Switch>
+        <Route path='/login'>
+        <Login/>
+        </Route>
+        <Route path='/grid'>
+          <Grid/>
+        </Route>
+        <Home/>
+      </Switch>
     </Router>
+    </div>
   );
 }
 

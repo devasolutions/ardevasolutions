@@ -15,7 +15,7 @@ const Grid = () => {
                     <Sidebar />
                     <Col>
                         <Switch>
-                            <Route path='/Clients'>
+                            <Route path='/clients'>
                                 <Clients/>
                             </Route>
                             <Route path='/Developers'>

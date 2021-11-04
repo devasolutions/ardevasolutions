@@ -4,43 +4,21 @@ import ClientsForm from "./ClientsForm";
 import axios from "axios";
 
 const baseURL = "http://devasolutions.net/api/costumer";
-const customers = {
-    "data" : [
-        {
-            "_id": 123,
-            "name" : "Name sample",
-            "email" : "email@email.com",
-            "solutions" : "solutions sample",
-            "work_area" : "work area sample"
-        },
-        {
-            "_id": 456,
-            "name" : "Name sample",
-            "email" : "email@email.com",
-            "solutions" : "solutions sample",
-            "work_area" : "work area sample"
-        },
-        {
-            "_id": 789,
-            "name" : "Name sample",
-            "email" : "email@email.com",
-            "solutions" : "solutions sample",
-            "work_area" : "work area sample"
-        }
-    ]
-}
+
 const Clients = () => {
-    // const [post, setPost] = useState(null)
     const [id, setId] = useState(null)
-    const [rows, setRows] = useState(customers.data)
+    const [rows, setRows] = useState(null)
     const [state, setState] = useState({
         modal1: false
     });
 
     const removeRow = () => {
-        let updatedCustomers = rows.filter(row => row._id != id)
-        console.log(updatedCustomers)
-        setRows(updatedCustomers)
+        axios.delete(`${baseURL}/${id}`).then((response => {
+            let updatedCustomers = rows.filter(row => row._id != id)
+            setRows(updatedCustomers)
+        })).catch( error => {
+            console.log('There was an error!', error)
+        })
      }
 
     const toggle = (nr) => () => {
@@ -50,19 +28,17 @@ const Clients = () => {
             [modalNumber]: !state[modalNumber],
         });
     };
-    // useEffect(() => {
-    //     axios.get(baseURL).then((response) => {
-    //         setPost(response.data);
-    //     })
-    // })
+    useEffect(() => {
+        axios.get(baseURL).then((response) => {
+            setRows(response.data);
+        })
+    })
 
 
 
     const [showDeleteFields, setShowDeleteFields] = useState(false)
     const triggerDelete = () => setShowDeleteFields(true)
     
-    // if (!post) return null;
-
     return (
         <div>
             <CDBContainer style={{ paddingTop: "1.5em", paddingBottom: "1.5em" }}>

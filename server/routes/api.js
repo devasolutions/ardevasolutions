@@ -5,6 +5,9 @@ const Costumer = require('../models/Costumer');
 const Solution = require('../models/Solution');
 const Technology = require('../models/Technology');
 
+/*** RUTAS API DEVELOPER ***/
+
+//GET
 router.get('/developer', (req,res) => {
     Developer.find({}, (err, developers) => {
         if(err){
@@ -16,6 +19,7 @@ router.get('/developer', (req,res) => {
     })
 })
 
+//POST
 router.post('/developer', (req,res) => {
     Developer.create(req.body, (err, developer) => {
         if(err){
@@ -28,6 +32,20 @@ router.post('/developer', (req,res) => {
     })
 });
 
+//DELETE
+router.delete('/developer/:id', (req, res) => {
+    Developer.deleteOne({_id: req.params.id}, (err) => {
+        if(err){
+            res.send({err});
+        }
+
+        else res.send("Successfully deleted: " + req.params.id);
+    })
+});
+
+/*** RUTAS API COSTUMER ***/
+
+//GET
 router.get('/costumer', (req,res) => {
     Costumer.find({}, (err, costumers) => {
         if(err){
@@ -39,6 +57,8 @@ router.get('/costumer', (req,res) => {
     });
 })
 
+
+//POST
 router.post('/costumer', (req,res) => {
     Costumer.create(req.body, (err, costumer) => {
         if(err){
@@ -51,6 +71,20 @@ router.post('/costumer', (req,res) => {
     });
 });
 
+//DELETE
+router.delete('/costumer/:id', (req, res) => {
+    Costumer.deleteOne({_id: req.params.id}, (err) => {
+        if(err){
+            res.send({err});
+        }
+
+        else res.send("Successfully deleted: " + req.params.id);
+    })
+});
+
+/*** ROUTAS API SOLUTION ***/
+
+//GET
 router.get('/solution', (req,res) => {
     Solution.find({}, (err, solutions) => {
         if(err){
@@ -62,6 +96,7 @@ router.get('/solution', (req,res) => {
     })
 });
 
+//POST
 router.post('/solution', (req,res) => {
     Solution.create(req.body, (err, solution) => {
         if(err){
@@ -74,6 +109,20 @@ router.post('/solution', (req,res) => {
     });
 });
 
+//DELETE
+router.delete('/solution/:id', (req, res) => {
+    Solution.deleteOne({_id: req.params.id}, (err) => {
+        if(err){
+            res.send({err});
+        }
+
+        else res.send("Successfully deleted: " + req.params.id);
+    })
+});
+
+/*** RUTAS API TECHNOLOGY ***/
+
+//GET
 router.get('/technology', (req,res) => {
     Technology.find({}, (err, technologies) => {
         if(err){
@@ -85,6 +134,7 @@ router.get('/technology', (req,res) => {
     })
 })
 
+//POST
 router.post('/technology', (req,res) => {
     Technology.create(req.body, (err, technology) => {
         if(err){
@@ -95,6 +145,17 @@ router.post('/technology', (req,res) => {
         res.status(200).send("Succesfully created:" + technology);
 
     });
+});
+
+//DELETE
+router.delete('/technology/:id', (req, res) => {
+    Technology.deleteOne({_id: req.params.id}, (err) => {
+        if(err){
+            res.send({err});
+        }
+
+        else res.send("Successfully deleted: " + req.params.id);
+    })
 });
 
 module.exports = router;

@@ -31,7 +31,7 @@ const Technologies = () => {
         axios.get(baseURL).then( (response)  => {
             setRows(response.data);
         });
-    }, []);
+    });
 
     const [showDeleteFields, setShowDeleteFields] = useState(false)
     const triggerDelete = () => setShowDeleteFields(true)

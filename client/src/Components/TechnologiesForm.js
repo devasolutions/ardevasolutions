@@ -1,31 +1,72 @@
-import React from "react";
+import React, {useState} from "react";
 import { CDBInput, CDBCard, CDBCardBody, CDBBtn, CDBContainer } from "cdbreact";
+import axios from "axios";
+
+const baseURL = "http://devasolutions.net/api/technology"
 
 const TechnologiesForm = () => {
+  const config = {
+    headers: {
+        "x-access-token" : localStorage.getItem("token")
+    }
+  }
+  const [technology, setTechnology] = useState({
+    "name": "",
+    "developer": "",
+    "version" : "",
+    "link": "",
+    "description" : ""
+  })
+  const handleInputChange = (event) => {
+    setTechnology({
+      ...technology,
+      [event.target.name]: event.target.value
+    })
+  }
+
+  const sendData = (event) => {
+    event.preventDefault()
+    axios.post(baseURL, technology, config).then(response => {
+      console.log(response)
+    })
+    .catch(e => console.log("There was an error", e)
+    )
+  }
   return (
+    <form onSubmit={sendData}>
     <CDBContainer>
             <CDBCard style={{ width: "30rem" }}>
               <CDBCardBody className="mx-4">
                 <div className="text-center mt-4 mb-4">
                   <p className="h4"> Agregar tecnologías </p>
                 </div>
-                <label htmlFor="defaultContactName" className="text-muted m-0">
-                  Campo 1
+                <label htmlFor="idTech" className="text-muted m-0" >
+                  ID
                 </label>
-                <CDBInput id="defaultContactName" className="mt-n3" type="text" />
-                <label htmlFor="defaultContactEmail" className="text-muted m-0">
-                  Campo 2
+                <CDBInput id="idTech" className="mt-n3" type="text" onChange={handleInputChange} name="_id"/>
+                <label htmlFor="nombreTech" className="text-muted m-0">
+                  Nombre
                 </label>
-                <CDBInput id="defaultContactEmail" className="mt-n3" type="email" />
-                <label htmlFor="defaultContactSubject" className="text-muted m-0">
-                  Campo 3
+                <CDBInput id="nombreTech" className="mt-n3" type="text" onChange={handleInputChange} name="name"/>
+                <label htmlFor="devTech" className="text-muted m-0">
+                  Desarrollador
                 </label>
-                <CDBInput id="defaultContactSubject" className="mt-n3" type="text" />
-                <label htmlFor="defaultContactMessage" className="text-muted m-0">
-                  Campo 4
+                <CDBInput id="devTech" className="mt-n3" type="text" onChange={handleInputChange} name="developer"/>
+                <label htmlFor="versionTech" className="text-muted m-0">
+                  Versión
                 </label>
-                <CDBInput id="defaultContactMessage" className="mt-n3" type="textarea" />
+                <CDBInput id="versionTech" className="mt-n3" type="text" onChange={handleInputChange} name="version"/>
+                <label htmlFor="enlaceTech" className="text-muted m-0">
+                  Enlace
+                </label>
+                <CDBInput id="enlaceTech" className="mt-n3" type="text" onChange={handleInputChange} name="link"/>
+                <label htmlFor="descTech" className="text-muted m-0">
+                  Descripción
+                </label>
+                <CDBInput id="descTech" className="mt-n3" type="textarea" onChange={handleInputChange} name="description"/>
+                
                 <CDBBtn
+                type="submit"
                   outline
                   color="secondary"
                   style={{width:"40%"}}
@@ -35,6 +76,7 @@ const TechnologiesForm = () => {
               </CDBCardBody>
             </CDBCard>
     </CDBContainer>
+    </form>
   );
 };
 export default TechnologiesForm;

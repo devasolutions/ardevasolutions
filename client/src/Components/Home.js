@@ -3,6 +3,7 @@ import Navbar from './Navbar'
 import { CDBNavLink } from "cdbreact";
 
 const Home = () => {
+    console.log("Token: " + localStorage.getItem("token"));
     return (
         <div>
             <Navbar />

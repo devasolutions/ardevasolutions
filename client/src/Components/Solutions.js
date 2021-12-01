@@ -6,12 +6,17 @@ const baseURL = "http://devasolutions.net/api/solution";
 const Solutions = () => {
     const [id, setId] = useState(null)
     const [rows, setRows] = useState(null)
+    const config = {
+        headers: {
+            "x-access-token" : localStorage.getItem("token")
+        }
+    }
     const [state, setState] = useState({
         modal1: false
       });
 
       const removeRow = () => {
-        axios.delete(`${baseURL}/${id}`).then((response => {
+        axios.delete(`${baseURL}/${id}`,config).then((response => {
             let updatedSolutions = rows.filter(row => row._id !== id)
             setRows(updatedSolutions)
         })).catch( error => {
@@ -28,7 +33,7 @@ const Solutions = () => {
       };
     
       React.useEffect(() => {
-          axios.get(baseURL).then((response) => {
+          axios.get(baseURL,config).then((response) => {
               setRows(response.data);
           })
       });

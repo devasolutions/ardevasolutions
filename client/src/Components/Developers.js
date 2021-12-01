@@ -10,9 +10,13 @@ const Developers = () => {
     const [state, setState] = useState({
         modal1: false
     });
-
+    const config = {
+        headers: {
+            "x-access-token" : localStorage.getItem("token")
+        }
+      }
     const removeRow = () => {
-        axios.delete(`${baseURL}/${id}`).then((response => {
+        axios.delete(`${baseURL}/${id}`,config).then((response => {
             let updatedDevelopers = rows.filter(row => row._id != id)
             setRows(updatedDevelopers)
         })).catch( error => {
@@ -29,7 +33,7 @@ const Developers = () => {
     };
 
     React.useEffect(() => {
-        axios.get(baseURL).then((response) => {
+        axios.get(baseURL,config).then((response) => {
             setRows(response.data);
         });
     })

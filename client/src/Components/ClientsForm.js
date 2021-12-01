@@ -6,12 +6,16 @@ const baseURL = "http://devasolutions.net/api/costumer";
 
 const ClientsForm = () => {
   const [client, setClient] = useState({
-    "_id": "",
     "name": "",
     "email": "",
     "solutions": [],
     "work_area": "",
   })
+  const config = {
+    headers: {
+        "x-access-token" : localStorage.getItem("token")
+    }
+  }
   const handleInputChange = (event) => {
     // console.log(event.target.name)
     // console.log(event.target.value)
@@ -23,9 +27,10 @@ const ClientsForm = () => {
 
   const sendData = (event) => {
     event.preventDefault()
-    console.log(client)
+    console.log(client);
+    console.log(config);
     // console.log(client.name, client.solution, client.email)
-    axios.post(baseURL, client).then(response => console.log(response))
+    axios.post(baseURL, client, config).then(response => console.log(response))
     .catch(e => console.log("There was an error", e)
     )
   }

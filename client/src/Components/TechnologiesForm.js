@@ -5,8 +5,12 @@ import axios from "axios";
 const baseURL = "http://devasolutions.net/api/technology"
 
 const TechnologiesForm = () => {
+  const config = {
+    headers: {
+        "x-access-token" : localStorage.getItem("token")
+    }
+  }
   const [technology, setTechnology] = useState({
-    "_id": "",
     "name": "",
     "developer": "",
     "version" : "",
@@ -22,7 +26,7 @@ const TechnologiesForm = () => {
 
   const sendData = (event) => {
     event.preventDefault()
-    axios.post(baseURL, technology).then(response => {
+    axios.post(baseURL, technology, config).then(response => {
       console.log(response)
     })
     .catch(e => console.log("There was an error", e)

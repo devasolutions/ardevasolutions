@@ -6,6 +6,11 @@ import axios from "axios";
 const baseURL = "http://devasolutions.net/api/costumer";
 
 const Clients = () => {
+    const config = {
+        headers: {
+            "x-access-token" : localStorage.getItem("token")
+        }
+    }
     const [id, setId] = useState(null)
     const [rows, setRows] = useState(null)
     const [state, setState] = useState({
@@ -13,7 +18,7 @@ const Clients = () => {
     });
 
     const removeRow = () => {
-        axios.delete(`${baseURL}/${id}`).then((response => {
+        axios.delete(`${baseURL}/${id}`, config).then((response => {
             let updatedCustomers = rows.filter(row => row._id != id)
             setRows(updatedCustomers)
         })).catch( error => {
@@ -29,7 +34,7 @@ const Clients = () => {
         });
     };
     useEffect(() => {
-        axios.get(baseURL).then((response) => {
+        axios.get(baseURL, config).then((response) => {
             setRows(response.data);
         })
     })

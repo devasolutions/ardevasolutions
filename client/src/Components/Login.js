@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { useHistory } from "react-router";
 import { CDBInput, CDBCard, CDBCardBody, CDBBtn, CDBLink, CDBContainer } from "cdbreact";
 import Navbar from './Navbar'
 import axios from 'axios';
@@ -6,9 +7,17 @@ import axios from 'axios';
 const Login = () => {
   const [loginUsername, setloginUsername] = useState("");
   const [loginPassword, setloginPassword] = useState("");
-  const loginUser = (user,password) =>{
-    axios.post("http://devasolutions.net/api/login", {username: loginUsername, password: loginPassword, origin: "https://localhost:3001/"})
-    .then(res => console.log(res));
+  const history = useHistory();
+  const loginUser = () =>{
+    axios.post("http://devasolutions.net/api/login", {email: loginUsername, password: loginPassword})
+    .then(res => {
+      console.log(res.data.token);
+      localStorage.setItem('token', res.data.token);
+      console.log(localStorage.getItem('token'));
+
+    });
+    
+    history.push('/');
   }
 
   return (

@@ -5,6 +5,11 @@ import axios from "axios";
 
 const baseURL = "http://devasolutions.net/api/technology";
 const Technologies = () => {
+    const config = {
+        headers: {
+            "x-access-token" : localStorage.getItem("token")
+        }
+      }
     const [id, setId] = useState(null)
     const [rows, setRows] = useState(null)
     const [state, setState] = useState({
@@ -12,7 +17,7 @@ const Technologies = () => {
       });
 
       const removeRow = () => {
-        axios.delete(`${baseURL}/${id}`).then((response => {
+        axios.delete(`${baseURL}/${id}`,config).then((response => {
             let updatedTechnologies = rows.filter(row => row._id !== id)
             setRows(updatedTechnologies)
         })).catch( error => {
@@ -28,7 +33,7 @@ const Technologies = () => {
         });
       };
     React.useEffect(() => {
-        axios.get(baseURL).then( (response)  => {
+        axios.get(baseURL,config).then( (response)  => {
             setRows(response.data);
         });
     });

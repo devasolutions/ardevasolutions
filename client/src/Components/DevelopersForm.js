@@ -6,7 +6,6 @@ const baseURL = "http://devasolutions.net/api/developer"
 
 const DevelopersForm = () => {
   const [developer, setDeveloper] = useState({
-    "_id": "",
     "name": {
       "first" : "",
       "last" : "",
@@ -16,6 +15,11 @@ const DevelopersForm = () => {
     "costumers": [],
     "description" : ""
   })
+  const config = {
+    headers: {
+        "x-access-token" : localStorage.getItem("token")
+    }
+  }
   const handleInputChange = (event) => {
     setDeveloper({
       ...developer,
@@ -26,7 +30,7 @@ const DevelopersForm = () => {
   const sendData = (event) => {
     event.preventDefault()
     console.log(developer)
-    axios.post(baseURL, developer).then(response => {
+    axios.post(baseURL, developer,config).then(response => {
       console.log(response)
     })
     .catch(e => console.log("There was an error", e)

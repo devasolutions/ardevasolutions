@@ -6,8 +6,12 @@ const baseURL = "http://devasolutions.net/api/solution"
 
 
 const SolutionsForm = () => {
+  const config = {
+    headers: {
+        "x-access-token" : localStorage.getItem("token")
+    }
+  }
   const [solution, setSolution] = useState({
-    "_id": "",
     "name": "",
     "technologies": [],
     
@@ -21,7 +25,7 @@ const SolutionsForm = () => {
 
   const sendData = (event) => {
     event.preventDefault()
-    axios.post(baseURL, solution).then(response => {
+    axios.post(baseURL, solution, config).then(response => {
       console.log(response)
     })
     .catch(e => console.log("There was an error", e)

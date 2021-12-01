@@ -6,7 +6,7 @@ import Solutions from './Components/Solutions';
 import Developers from './Components/Developers';
 import Technologies from './Components/Technologies';
 import './App.css';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 function App() {
   return (
